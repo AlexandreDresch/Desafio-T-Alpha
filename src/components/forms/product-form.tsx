@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -22,11 +24,12 @@ import { Loader2 } from "lucide-react";
 import useCreateProduct from "@/hooks/api/use-create-product";
 
 import useUpdateProduct from "@/hooks/api/use-update-product";
-import useGetProducts from "@/hooks/api/use-get-products";
 
 import useToken from "@/hooks/use-token";
 
 import { toast } from "sonner";
+
+import UserContext from "@/context/user-context";
 
 export default function ProductForm({
   type,
@@ -35,7 +38,8 @@ export default function ProductForm({
 }: ProductFormProps) {
   const { createProduct, createProductLoading } = useCreateProduct();
   const { updateProduct, updateProductLoading } = useUpdateProduct();
-  const { getProducts } = useGetProducts();
+
+  const { refresh } = useContext(UserContext);
 
   const token = useToken();
 
@@ -64,7 +68,7 @@ export default function ProductForm({
 
         createProduct(productData);
         form.reset();
-        getProducts({ token });
+        refresh();
 
         toast.success("Produto criado com sucesso!");
       }
@@ -98,8 +102,6 @@ export default function ProductForm({
 
         if (onFinish) {
           onFinish();
-
-          toast.success("Produto atualizado com sucesso!");
         }
       }
     } catch (error) {

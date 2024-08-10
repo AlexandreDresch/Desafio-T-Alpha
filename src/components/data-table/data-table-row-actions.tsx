@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { EllipsisVerticalIcon } from "lucide-react";
 
@@ -16,8 +16,9 @@ import DeleteProductModal from "../modals/delete-product-modal";
 import EditProductModal from "../modals/edit-product-modal";
 
 import useToken from "@/hooks/use-token";
-import useGetProducts from "@/hooks/api/use-get-products";
 import useDeleteProduct from "@/hooks/api/use-delete-product";
+import UserContext from "@/context/user-context";
+import { toast } from "sonner";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -30,7 +31,7 @@ export function DataTableRowActions<TData>({
   const [openEditModal, setOpenEditModal] = useState(false);
 
   const { deleteProduct } = useDeleteProduct();
-  const { getProducts } = useGetProducts();
+  const { refresh } = useContext(UserContext);
   const token = useToken();
 
   function handleOpenDeleteModal() {
@@ -47,7 +48,8 @@ export function DataTableRowActions<TData>({
     try {
       deleteProduct({ id, token });
 
-      getProducts({ token });
+      toast.success("Produto deletado com sucesso!");
+      refresh();
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +61,10 @@ export function DataTableRowActions<TData>({
 
   function handleCloseEditModal() {
     setOpenEditModal(false);
+
+    refresh();
+
+    toast.success("Produto atualizado com sucesso!");
   }
 
   return (
