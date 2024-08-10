@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# Desafio T-Alpha
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![cover](.github/image.png?style=flat)
 
-Currently, two official plugins are available:
+### Projeto FrontEnd de gestão de produtos feito como teste técnico para a empresa T-Alpha.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Listagem, criação, edição e deleção de produtos**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Adição de novos usuários e login**
 
-- Configure the top-level `parserOptions` property like this:
+### [Acesse](https://desafio-t-alpha-two.vercel.app) o projeto.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Inicializando o projeto:
+
+Clone o repositório:
+
+```cl
+git clone https://github.com/AlexandreDresch/Desafio-T-Alpha.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Use **npm install** para instalar as dependências do projeto:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```cl
+cd Desafio-T-Alpha
+npm install
 ```
+
+Popule o arquivo `.env` com base no `.env.EXAMPLE`.
+<br />
+
+Então inicie o projeto.
+
+```cl
+npm run dev
+```
+
+Abra http://localhost:5173 no seu navegador para começar a explorar o projeto!
+
+## Tecnologias
+
+- [ ] ReactJS (Vite)
+- [ ] Typescript
+- [ ] TailwindCSS
+- [ ] Shadcn/ui
+- [ ] Axios
+- [ ] React Router
+- [ ] Zod
+- [ ] React Hook Form
+
+<br />
